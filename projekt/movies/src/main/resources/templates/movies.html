@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+</head>
+<body>
+<form th:object="${movie}" method="post">
+    <label for="name">Title:</label>
+    <input type="text" id="name" th:field="*{title}"/>
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" th:field="*{genre}"/>
+    <label th:type="releaseDate">Release Date:</label>
+    <input type="text" id="releaseDate" th:field="*{releaseDate}"/>
+    <label th:type="director">Director:</label>
+    <input type="text" id="director" th:field="*{director}"/>
+    <input type="submit" value="Add"/>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>Director</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movie.title}">Heathers</td>
+            <td th:text="${movie.genre}">Comedy</td>
+            <td th:text="${movie.releaseDate}">1988</td>
+            <td th:text="${movie.director}">Michael Lehmann</td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
