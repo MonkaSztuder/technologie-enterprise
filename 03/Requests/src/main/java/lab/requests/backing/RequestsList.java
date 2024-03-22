@@ -5,6 +5,7 @@ import jakarta.faces.component.html.HtmlDataTable;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Size;
 import lab.requests.data.RequestRepository;
 import lab.requests.entities.Request;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class RequestsList {
     @Inject
     private RequestRepository requestRepository;
+    @Size(min = 3, max = 60, message = "{request.size}")
     private String newRequest;
     private HtmlDataTable requestsDataTable;
 
