@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<StudentContext>( opt=>opt.UseInMemoryDatabase("StudentList"));
@@ -22,7 +23,12 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
-
+app.UseRouting();
+app.UseCors( options =>
+ options.WithOrigins("http://localhost:4200")
+ .AllowAnyMethod()
+.AllowAnyHeader());
+app.UseAuthorization();
 app.MapControllers();
 
 var summaries = new[]
